@@ -11,7 +11,7 @@ private:
 
 public:
     void push(const T& value) {
-        // TODO
+        data.push_back(value);
     }
 
     void pop() {
@@ -24,13 +24,11 @@ public:
     }
 
     bool empty() const {
-        // TODO
-        return true;
+        return data.empty();
     }
 
     int size() const {
-        // TODO
-        return 0;
+        return data.size();
     }
 };
 

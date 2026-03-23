@@ -15,12 +15,17 @@ public:
     }
 
     void pop() {
-        // TODO
+        if (data.empty()) {
+            throw std::underflow_error("ArrayStack is empty");
+        }
+        data.pop_back();
     }
 
     T top() const {
-        // TODO
-        return T();
+        if (data.empty()) {
+            throw std::underflow_error("ArrayStack is empty");
+        }
+        return data.back();
     }
 
     bool empty() const {

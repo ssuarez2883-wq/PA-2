@@ -3,7 +3,7 @@
 #include <string>
 #include <unordered_map>
 #include <cctype>
-#Sunny Suarez 3/18/26
+//Sunny Suarez 3/18/26
 
 #include "ArrayStack.h"
 
@@ -19,7 +19,25 @@ struct Token {
 
 vector<Token> tokenize(const string& line) {
     vector<Token> tokens;
-    // TODO
+    string num;
+
+    for (char c: line) {
+        if (isspace(c)) continue;
+
+        if (isdigit(c)) {
+            num += c;
+        } else {
+            if (!num.empty()) {
+                tokens.push_back({num});
+                num = "";
+            }
+            tokens.push_back({string(1,c)});
+        }
+    }
+
+    if (!num.empty()) {
+        tokens.push_back({num});
+    }
     return tokens;
 }
 

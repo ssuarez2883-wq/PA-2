@@ -8,3 +8,7 @@ adventures next time.
 Oops I haven't done this in a while.. Anyways, today I implemeneted
 the tokenzier to convert inputs into token objects instead of Strings.
 It seperates integers and operators while ignoring whitespaces.
+## 2026 - 03 - 27
+Made isValidPostFix using ArrayStack class. Used stack-based appraoch
+by pushing values for numbers and popping operators. The push method is
+throwing flags so I will have to fix that soon but. We shall see.

@@ -35,6 +35,7 @@ public:
     int size() const {
         return data.size();
     }
+
 };
 
 #endif

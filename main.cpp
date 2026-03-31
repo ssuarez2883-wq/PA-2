@@ -48,14 +48,15 @@ bool isOperator(const string& s) {
 }
 
 int precedence(const string& op) {
-    // TODO
+    if (op == "+" || op == "-") return 1;
+    if (op == "*" || op == "/") return 2;
     return 0;
 }
 
 // Detection
 
 bool isValidPostfix(const vector<Token>& tokens) {
-    ArrayStack<string> stack;
+    ArrayStack<int> stack;
 
     for (const auto& t : tokens) {
         const string& s = t.value;
@@ -83,8 +84,30 @@ bool isValidPostfix(const vector<Token>& tokens) {
 }
 
 bool isValidInfix(const vector<Token>& tokens) {
-    // TODO
-    return false;
+    int balance = 0;
+
+    for (const auto& t : tokens) {
+        const string& s = t.value;
+
+        bool isNum=true;
+        for (char c : s) {
+            if (!isdigit(c)) {
+                isNum=false;
+                break;
+            }
+        }
+
+        if (isNum) continue;
+
+        if (isOperator(s)) continue;
+
+        if (s == "(") balance++;
+        else if (s== ")") balance--;
+        else return false;
+
+        if (balance < 0) return false;
+    }
+    return balance == 0;
 }
 
 // Conversion
@@ -99,8 +122,41 @@ vector<Token> infixToPostfix(const vector<Token>& tokens) {
 
 double evalPostfix(const vector<Token>& tokens) {
     ArrayStack<double> stack;
-    // TODO
-    return 0.0;
+    for (const auto& t : tokens) {
+        const string& s = t.value;
+
+        bool isNum=true;
+        for (char c : s) {
+            if (!isdigit(c)) {
+                isNum=false;
+                break;
+            }
+        }
+
+        if (isNum) {
+            stack.push(stod(s));
+        }
+        else if (isOperator(s)) {
+            double b = stack.top();
+            stack.pop();
+            double a = stack.top();
+            stack.pop();
+
+            if (s == "+") {
+                stack.push(a + b);
+            }
+            else if (s == "-") {
+                stack.push(a - b);
+            }
+            else if (s == "*") {
+                stack.push(a * b);
+            }
+            else if (s == "/") {
+                stack.push(a / b);
+            }
+        }
+    }
+    return stack.top();
 }
 
 // Main

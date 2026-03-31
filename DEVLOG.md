@@ -12,3 +12,13 @@ It seperates integers and operators while ignoring whitespaces.
 Made isValidPostFix using ArrayStack class. Used stack-based appraoch
 by pushing values for numbers and popping operators. The push method is
 throwing flags so I will have to fix that soon but. We shall see.
+## 2026 - 03 - 30
+Soo... I lost track of time. and I realize now that this is due in 24 hours
+and I definitely don't have 10 commits so... I'm just gonna take that L sadly,
+completely my fault. Anyways. I first fixed the errors in isValidPostFix. it was
+due to the ArrayStack being string rather than int so it wouldn't take the 1.
+Fixed that! Then, I implemented evalPostFix, precendence, and isValidInfix. Normally,
+I would've broken up these methods across multiple commits however due to my time
+constraint I had to bear down and do a huge chunk. Sorry for failing you Mrs. Manju.
+Going to finish up this program entirely tmrw!! Gonna do infixToPostfix and fine tune
+everything else.

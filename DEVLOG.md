@@ -22,3 +22,8 @@ I would've broken up these methods across multiple commits however due to my tim
 constraint I had to bear down and do a huge chunk. Sorry for failing you Mrs. Manju.
 Going to finish up this program entirely tmrw!! Gonna do infixToPostfix and fine tune
 everything else.
+## 2026 - 03 -31
+Okay! I finished the last method, infixToPostfix. This one took some time and some
+research because I was really confused. I will admit I did ask ChatGPT for some assistance
+regarding how to pass the token object through push_back() - which I discovered using the {}
+syntax initializes the argument as a token. I was really stuck on this one so it took me a while.

@@ -78,9 +78,12 @@ bool isValidPostfix(const vector<Token>& tokens) {
             stack.pop();
             stack.push(1);
         }
-        else return false;
-        return stack.size() == 1;
+        else {
+            return false;
+        }
     }
+
+    return stack.size() == 1;
 }
 
 bool isValidInfix(const vector<Token>& tokens) {
@@ -114,7 +117,46 @@ bool isValidInfix(const vector<Token>& tokens) {
 
 vector<Token> infixToPostfix(const vector<Token>& tokens) {
     vector<Token> output;
-    // TODO
+    ArrayStack<string> stack;
+
+    for (const auto& t : tokens) {
+        const string& s = t.value;
+
+        bool isNum=true;
+        for (char c : s) {
+            if (!isdigit(c)) {
+                isNum=false;
+                break;
+            }
+        }
+
+        if (isNum) {
+            output.push_back(t);
+        }
+        else if (isOperator(s)) {
+            while (!stack.empty() && isOperator(stack.top()) && precedence(stack.top()) >= precedence(s)) {
+                output.push_back({stack.top()});
+                stack.pop();
+            }
+            stack.push(s);
+        }
+        else if (s == "(") {
+            stack.push(s);
+        }
+        else if (s == ")") {
+            while (!stack.empty() && stack.top() != "(") {
+                output.push_back({stack.top()});
+                stack.pop();
+            }
+
+            stack.pop();
+        }
+    }
+
+    while (!stack.empty()) {
+        output.push_back({stack.top()});
+        stack.pop();
+    }
     return output;
 }
 
